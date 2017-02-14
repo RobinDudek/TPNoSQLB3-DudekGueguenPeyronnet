@@ -5,16 +5,24 @@ var Person = require('../models/Person');
 // Permet de créer une route qui map l'url "/" en GET
 router.get('/', function(req, res) {
     var page = parseInt(req.query.page);
-    var itemSkip = 0;
-    if(page!=NaN)
+    var itemsSkip = 0;
+    if(isNaN(page) || page < 1)
     {
-        itemsSkip = (page - 1) * 100;
+        //res.redirect('home/?page=1');
+        page=1;
     }
     // Permet de retrouver des résultats sur un modèle
     Person.count().then(function(count) {
+        var nbPages = (count/100)+1;
+        if(page>nbPages)
+        {
+            page = Math.round(nbPages);
+        }
+        itemsSkip = (page - 1) * 100;
         Person.find({}).skip(itemsSkip).limit(100).then(function(persons) {
         // Permet d'afficher une vue et de lui passer des paramètres
-            res.render('home.ejs', { persons: persons, nbPages: count/100, numPage: page});
+            console.log(nbPages + " " + page);
+            res.render('home.ejs', { persons: persons, nbPages: nbPages, numPage: page});
         });
     });
 
@@ -22,12 +30,26 @@ router.get('/', function(req, res) {
 
 router.get('/stats', function(req, res){
     var query = req.query.requete;
+    if(query!="age" && query!="agebis" && query!="femme" && query!="ip" && query!="chiffre" && query!="pourcent")
+    {
+        query = "age";
+    }
     //début check argument get requete html
+
     if(query == "age")
     {
     // Permet de retrouver des résultats sur un modèle
         Person.count().then(function(count) {
             Person.find({ gender: "Male", $and: [ { age: { $gt: 20, $lt: 40 } }, { $and: [ { company: { $in: ["Quamba", "Zoomcast"] } } ] } ] }).then(function(persons) {
+                res.render('stats.ejs', { persons: persons, query: query});
+            });
+        });
+    }
+    else if(query == "agebis")
+    {
+    // Permet de retrouver des résultats sur un modèle
+        Person.count().then(function(count) {
+            Person.find({age:{ $not: {$gt: 20, $lt: 50}}}).then(function(persons) {
                 res.render('stats.ejs', { persons: persons, query: query});
             });
         });

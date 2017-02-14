@@ -13,6 +13,9 @@
             <a class="btn btn-primary" href="/stats?requete=age">
                 <span class="glyphicon glyphicon-plus"></span> Entre 20 et 40ans Chez Truc
             </a>
+            <a class="btn btn-primary" href="/stats?requete=agebis">
+                <span class="glyphicon glyphicon-plus"></span> N'est pas Entre 20 et 50ans
+            </a>
             <a class="btn btn-primary" href="/stats?requete=femme">
                 <span class="glyphicon glyphicon-plus"></span> Femme plus âgée
             </a>
@@ -59,18 +62,24 @@
                 </tbody>
                 <% }); %>
             </table>
+            <div class="row">
+                <div class="col-sm-4"></div>
+                <ul class="pagination col-sm-6" style="text-align: center;">
+                    <li><a href='?page=1'>FirstPage</a></li>
+                    <% 
+                    for(var page = 1; page <= nbPages ; page++)
+                    { 
+                        if((page >= (numPage-3)) && (page<=(numPage+3))) { %>
 
-          <ul class="pagination" style="text-align: center;">
-            <% 
-            for(var page = 1; page <= nbPages+1 ; page++)
-            { %>
-
-            <li<% if(page == numPage){ %> class="active" <% } %>>
-                <a href='?page=<%= page %>'><%= page %></a></li>
-            <%
-            } 
-            %>
-          </ul>
+                    <li<% if(page == numPage){ %> class="active" <% } %>>
+                        <a href='?page=<%= page %>'><%= page %></a></li>
+                    <%
+                        }
+                    } 
+                    %>
+                    <li><a href='?page=<%= nbPages %>'>LastPage</a></li>
+                </ul>
+            </div>
 
         </div>
     </body>
