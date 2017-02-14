@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="stylesheet" href="/public/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/public/css/main.css" />
+        <script src="/public/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <%- include('shared/menu') %>
+        <div class="container">
+            <a class="btn btn-danger pull-right" href="/">Retour</a>
+            <h1>Ajouter une personne</h1>
+    
+            <div class="row">
+                <div class="col-xs-8 col-xs-offset-2">
+                    <form id="add" method="post" action="/add" class="form-horizontal" role="form">
+
+                        <div class="form-group row">
+                            <label class="control-label col-sm-3" for="firstname">Firstname :</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Yvan" required><span id="infoId" class="info"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="control-label col-sm-3" for="lastname">Lastname :</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Dupont" required><span id="infoId" class="info"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="control-label col-sm-3" for="age">Age :</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="age" name="age" placeholder="20" required><span id="infoId" class="info"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col-sm-3" for="gender">Gender :</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" id="sel3" name="gender" required>
+                                    <option selected="selected" value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col-sm-3" for="company">Company :</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="company" id="company" placeholder="Facebook" required><span id="infoId" class="info"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="control-label col-sm-3" for="departement">Departement :</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="departement" id="departement" placeholder="Marketing" required><span id="infoId" class="info"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="control-label col-sm-3"  for="email">Email :</label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="herge.dupont@ynov.com" required><span id="infoId" class="info"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="control-label col-sm-3" for="city">City :</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="city" id="city" placeholder="Lyon" required><span id="infoId" class="info"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="control-label col-sm-3" for="country">Country :</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="country" id="country" placeholder="France" required><span id="infoId" class="info"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="control-label col-sm-3" for="ip_address">Ip_Address :</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="ip_address" id="ip_address" placeholder="127.0.0.1" required><span id="infoId" class="info"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <input type="submit" class="btn pull-right" style="margin: 5px;"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

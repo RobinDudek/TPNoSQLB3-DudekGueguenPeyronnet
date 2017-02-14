@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="stylesheet" href="/public/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/public/css/main.css" />
+        <script src="/public/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <%- include('shared/menu') %>
+        <div class="container">
+            <a class="btn btn-primary" href="/stats?requete=age">
+                <span class="glyphicon glyphicon-plus"></span> Entre 20 et 40ans Chez Truc
+            </a>
+            <a class="btn btn-primary" href="/stats?requete=femme">
+                <span class="glyphicon glyphicon-plus"></span> Femme plus âgée
+            </a>
+            <a class="btn btn-primary" href="/stats?requete=ip">
+                <span class="glyphicon glyphicon-plus"></span> ip x.129.x.x
+            </a>
+            <a class="btn btn-primary" href="/stats?requete=chiffre">
+                <span class="glyphicon glyphicon-plus"></span> chiffre dans email
+            </a>
+            <a class="btn btn-primary" href="/stats?requete=pourcent">
+                <span class="glyphicon glyphicon-plus"></span> Pourcentage par entreprise
+            </a>
+            <a class="btn btn-primary pull-right" href="/add">
+                <span class="glyphicon glyphicon-plus"></span> Ajouter une personne
+            </a>
+            <h1>Liste des personnes</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Gender</th>
+                        <th>Age</th>
+                        <th>Company</th>
+                        <th>Departement</th>
+                        <th>Email</th>
+                        <th>City</th>
+                        <th>Country</th>
+                    </tr>
+                </thead>
+                <% persons.forEach(function(p) { %>
+                <tbody>
+                    <tr>
+                        <td> <%= p.firstname %> </td>
+                        <td> <%= p.lastname %> </td>
+                        <td> <%= p.gender %> </td>
+                        <td> <%= p.age %> </td>
+                        <td> <%= p.company %> </td>
+                        <td> <%= p.departement %> </td>
+                        <td> <%= p.email %> </td>
+                        <td> <%= p.city %> </td>
+                        <td> <%= p.country %> </td>
+                    </tr>
+                </tbody>
+                <% }); %>
+            </table>
+
+          <ul class="pagination" style="text-align: center;">
+            <% 
+            for(var page = 1; page <= nbPages+1 ; page++)
+            { %>
+
+            <li<% if(page == numPage){ %> class="active" <% } %>>
+                <a href='?page=<%= page %>'><%= page %></a></li>
+            <%
+            } 
+            %>
+          </ul>
+
+        </div>
+    </body>
+</html>
